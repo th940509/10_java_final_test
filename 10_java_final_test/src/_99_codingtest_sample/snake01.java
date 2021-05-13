@@ -53,16 +53,16 @@ public class snake01 {
 				nextx  = x[0] - 1; // 
 			}
 			else if (move == 2) { //right  
-				nexty = y[0]; // nexty = 0
-				nextx = x[0] + 1; // nextx = 1
+				nexty = y[0]; //
+				nextx = x[0] + 1; // 
 			}
 			else if (move == 3) { //up
 				nexty = y[0] - 1;
 				nextx = x[0];
 			}
-			else if (move == 4) { //down
-				nexty = y[0] + 1;
-				nextx = x[0];
+			else if (move == 4) { //down (1)
+				nexty = y[0] + 1; // nexty = 1
+				nextx = x[0]; // nextx = 0
 			}
                                                               // 벽에 부딫힐 경우..
 			if (nexty < 0 || nextx < 0) 			continue; // nexty, nextx 둘중 하나가 음수가 될 경우 continue;
@@ -70,15 +70,15 @@ public class snake01 {
 			if (map[nexty][nextx] != 0) 		continue;     // 뒤에 몸통이 있는 경우..
 			 
 			// 꼬리 지우기
-			int taily = y[y.length-1];
-			int tailx = x[x.length-1];		
-			map[taily][tailx ] = 0;
+			int taily = y[y.length-1]; // taily = y[3]
+			int tailx = x[x.length-1]; // tailx = x[3]
+			map[taily][tailx ] = 0; // map [3][3] = 0
 			
 
 			// 몸통 이동하기(머리빼고)
-			for (int i=snake.length-1; i>0; i--) {
-				y[i] = y[i - 1];
-				x[i] = x[i - 1];
+			for (int i=snake.length-1; i>0; i--) { // int i= 4-1; i>0; i--; -> i=3,2,1
+				y[i] = y[i - 1]; // 
+				x[i] = x[i - 1]; // 
 			}
 
             // 머리이동
