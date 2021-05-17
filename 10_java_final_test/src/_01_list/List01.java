@@ -4,7 +4,7 @@ class LinkedList{
 	
 	private ListNode head; // private로 ListNode 클래스 변수 head 생성
 	
-	public LinkedList(){
+	public LinkedList(){ // public 생성자: 클래스 실행 시 무조건 실행되어야 함.
 		head = null; // -> head = null;
 	}
 	
@@ -20,15 +20,15 @@ class LinkedList{
 		ListNode newNode = new ListNode(data); // 1) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 월) 대입
 		                                       // 2) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 수) 대입
 		                                       // 3) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 일) 대입
-		if(head == null){ // 처음에는 head = null 성립
-			this.head = newNode; // head에 위의 newNode 값 대입
+		if(head == null){ // public 생성자 실행.
+			this.head = newNode; // head에 위의 newNode 값 대입 -> data = 월, link = null
 		}
 		else{ // 문자열 입력받기 120줄: 수 / 121줄: 일
 			ListNode temp = head; // 2) temp에 기존의 head 값 공유 / 3) temp에 기존의 head값 공유
 			while(temp.link != null) temp = temp.link; // temp.link 가 null이 아닐때 성립 2) 성립X // 3) 성립O 
-			                                           // temp 에 temp,Link(data = 수(private) / link = null) 공유
+			                                           // temp 에 temp.Link 주소 공유
 			 
-			temp.link = newNode; //temp.link에 2)값대입 (data = 수(private) / link = null) 3)값대입 (data = 일(private) / link = null)
+			temp.link = newNode; // temp.link 에 newNode(data = 수 / link = null) 값 대입
 		}
 	}
 	
@@ -77,7 +77,7 @@ class LinkedList{
 	
 	
 	public void printList(){
-		ListNode temp = this.head;
+		ListNode temp = this.head; //  
 		System.out.printf("L = (");
 		while(temp != null){
 			System.out.printf(temp.getData());
@@ -96,7 +96,7 @@ class ListNode{
 	private String data;
 	public ListNode link; // link는 ListNode의 클래스 변수
 	
-	public ListNode(){
+	public ListNode(){ // 생성자는 객체가 생성될때 무조건 실행.
 		this.data = null;
 		this.link = null;
 	}
@@ -117,9 +117,9 @@ class ListNode{
 
 public class List01{
 	
-	public static void main(String args[]){ // 메인
+	public static void main(String args[]){ // 메인 찾기
 		
-LinkedList L = new LinkedList(); // LinkedList 클래스 변수 L에 LinkedList객체 대입.. 
+LinkedList L = new LinkedList(); // LinkedList 클래스 변수 생성 후 객체 대입.
 		
 		System.out.println("(1) 공백 리스트에 노드 3개 삽입하기");
 		L.insertLastNode("월");
