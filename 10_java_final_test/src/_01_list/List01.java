@@ -25,6 +25,9 @@ class LinkedList{
 		}
 		else{ // 문자열 입력받기 120줄: 수 / 121줄: 일
 			ListNode temp = head; // 2) temp에 기존의 head 값 공유 / 3) temp에 기존의 head값 공유
+			System.out.println("head : " + head);
+			System.out.println("temp : " + temp);
+			System.out.println("temp.link : " + temp.link);
 			while(temp.link != null) temp = temp.link; // temp.link 가 null이 아닐때 성립 2) 성립X // 3) 성립O 
 			                                           // temp 에 temp.Link 주소 공유
 			 
