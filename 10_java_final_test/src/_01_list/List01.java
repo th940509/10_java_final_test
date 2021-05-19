@@ -1,4 +1,4 @@
-package _01_list; //중요! ...진행중
+package _01_list; //* 분석: 2021/05/13 ~ 2021/05/19 23:46
 
 class LinkedList{
 	
@@ -9,10 +9,22 @@ class LinkedList{
 	}
 	
 	// ListNode의 클래스 변수 / 문자열 입력받기
-	public void insertMiddleNode(ListNode pre, String data){       
-		ListNode newNode = new ListNode(data);
-		newNode.link = pre.link;
-		pre.link = newNode;
+	public void insertMiddleNode(ListNode pre, String data){ //클래스 변수, 문자열 입력받기 : pre(반환된 temp(data = 수..) , 금 
+		ListNode newNode = new ListNode(data); // ListNode 클래스 변수 newNode 생성 -> ListNode(금) => data = 금 / link = null 대입
+		System.out.println("newNode : " + newNode);                         //확인
+		System.out.println("newNode.getData : " + newNode.getData());       //확인
+		System.out.println("newNode.link : " + newNode.link);               //확인
+		
+		newNode.link = pre.link; // pre.link 주소 공유
+		
+		System.out.println("pre.getData : " + pre.getData());               //확인
+		System.out.println("pre.link : " + pre.link);                       //확인
+		System.out.println("pre.link.getData : " + pre.link.getData());     //확인
+		System.out.println("pre.link.link : " + pre.link.link);             //확인
+		
+		pre.link = newNode; // pre.link = newNode 주소 공유
+		
+		System.out.println("pre.link : " + pre.link);                       //확인
 	}
 	
 	
@@ -20,15 +32,17 @@ class LinkedList{
 		ListNode newNode = new ListNode(data); // 1) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 월) 대입
 		                                       // 2) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 수) 대입
 		                                       // 3) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 일) 대입
+		System.out.println("newNode : " + newNode);                       //확인
 		if(head == null){ // public 생성자 실행.
 			this.head = newNode; // head에 위의 newNode 값 대입 -> data = 월, link = null
-			System.out.println("head : " + head);
+			System.out.println("head : " + head);                         //확인
 		}
 		else{ // 문자열 입력받기 120줄: 수 / 121줄: 일
-			ListNode temp = head; // 2) temp에 기존의 head 값 공유 / 3) temp에 기존의 head값 공유
+			ListNode temp = head; // 1) 성립X 2) temp에 기존의 head 값 공유 / 3) temp에 기존의 head값 공유
 			System.out.println("head : " + head);                         //확인
 			System.out.println("temp : " + temp);                         //확인
 			System.out.println("temp.link : " + temp.link);               //확인
+			
 			while(temp.link != null) {
 				System.out.println("temp : " + temp);                     //확인
 				System.out.println("temp.link : " + temp.link);           //확인
@@ -39,6 +53,9 @@ class LinkedList{
 			temp.link = newNode; // temp.link 에 newNode(data = 수 / link = null) 값 대입
 			System.out.println("temp.link : " + temp.link);               //확인
 			System.out.println("head : " + head);                         //확인
+			System.out.println("temp : " + temp);                         //확인
+			System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + temp.link.getData());        //확인
+			//System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()); //->  nullpointer 에러..
 		}
 	}
 	
@@ -61,14 +78,19 @@ class LinkedList{
 	}
 	
 	
-	public ListNode searchNode(String data){
-		ListNode temp = this.head;
-		while(temp != null){
-			if(data == temp.getData())  
-				return temp;
-			else temp = temp.link;
+	public ListNode searchNode(String data){ // 문자열 입력받기 1) 수
+		ListNode temp = this.head; 
+		System.out.println("head : " + head);                             //확인
+		System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData());  //확인
+		while(temp != null){ // 성립O
+			if(data == temp.getData()) // 1) temp.getData = 월 -> (월 != 수) 성립 X -> else 이동 
+				return temp;           //  2)temp.getData = 수 -> 수 == 수 성립 O -> temp 값 (data = 수..) 반환
+			
+			else temp = temp.link; // temp.link => data = 수 ... -> temp 에게 주소 공유
+			System.out.println("temp : " + temp);                         //확인
+			System.out.println("temp.link : " + temp.link);               //확인
 		}
-		return  temp;
+		return  temp; // temp 값 반환
 	}
 	
 	
@@ -139,9 +161,9 @@ LinkedList L = new LinkedList(); // LinkedList 클래스 변수 생성 후 객�
 
 		System.out.println("(2) 수 노드 뒤에 금 노드 삽입하기");
 		ListNode pre = L.searchNode("수");
-		if(pre == null) 
+		if(pre == null) // null이 아니기 때문에 성립X
 			System.out.println("검색실패>> 찾는 데이터가 없습니다.");
-		else{
+		else{ // 성립O
 			L.insertMiddleNode(pre, "금");
 			L.printList();
 		}
