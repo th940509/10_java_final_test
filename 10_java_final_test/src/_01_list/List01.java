@@ -22,16 +22,23 @@ class LinkedList{
 		                                       // 3) ListNode 클래스 변수 newNode 생성 -> ListNode(data = 일) 대입
 		if(head == null){ // public 생성자 실행.
 			this.head = newNode; // head에 위의 newNode 값 대입 -> data = 월, link = null
+			System.out.println("head : " + head);
 		}
 		else{ // 문자열 입력받기 120줄: 수 / 121줄: 일
 			ListNode temp = head; // 2) temp에 기존의 head 값 공유 / 3) temp에 기존의 head값 공유
-			System.out.println("head : " + head);
-			System.out.println("temp : " + temp);
-			System.out.println("temp.link : " + temp.link);
-			while(temp.link != null) temp = temp.link; // temp.link 가 null이 아닐때 성립 2) 성립X // 3) 성립O 
-			                                           // temp 에 temp.Link 주소 공유
-			 
+			System.out.println("head : " + head);                         //확인
+			System.out.println("temp : " + temp);                         //확인
+			System.out.println("temp.link : " + temp.link);               //확인
+			while(temp.link != null) {
+				System.out.println("temp : " + temp);                     //확인
+				System.out.println("temp.link : " + temp.link);           //확인
+				temp = temp.link; // temp.link 가 null이 아닐때 성립 2) 성립X // 3) 성립O 
+				System.out.println("temp : " + temp);                     //확인
+				System.out.println("temp.link : " + temp.link);           //확인
+			}
 			temp.link = newNode; // temp.link 에 newNode(data = 수 / link = null) 값 대입
+			System.out.println("temp.link : " + temp.link);               //확인
+			System.out.println("head : " + head);                         //확인
 		}
 	}
 	
