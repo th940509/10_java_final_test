@@ -55,7 +55,7 @@ class LinkedList{
 			System.out.println("head : " + head);                         //확인
 			System.out.println("temp : " + temp);                         //확인
 			System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + temp.link.getData());        //확인
-			//System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()); //->  nullpointer 에러..
+			System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()); //->  nullpointer 에러?
 		}
 	}
 	
