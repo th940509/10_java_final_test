@@ -1,4 +1,4 @@
-package _01_list; //* 분석: 2021/05/13 ~ 2021/05/19 23:46
+package _01_list; 
 
 class LinkedList{
 	
@@ -15,14 +15,14 @@ class LinkedList{
 		System.out.println("newNode.getData : " + newNode.getData());       //확인
 		System.out.println("newNode.link : " + newNode.link);               //확인
 		
-		newNode.link = pre.link; // pre.link 주소 공유
+		newNode.link = pre.link; // pre.link 주소 공유, 대입
 		
 		System.out.println("pre.getData : " + pre.getData());               //확인
 		System.out.println("pre.link : " + pre.link);                       //확인
 		System.out.println("pre.link.getData : " + pre.link.getData());     //확인
 		System.out.println("pre.link.link : " + pre.link.link);             //확인
 		
-		pre.link = newNode; // pre.link = newNode 주소 공유
+		pre.link = newNode; // pre.link = newNode 주소 공유, 대입
 		
 		System.out.println("pre.link : " + pre.link);                       //확인
 	}
@@ -40,22 +40,56 @@ class LinkedList{
 		else{ // 문자열 입력받기 120줄: 수 / 121줄: 일
 			ListNode temp = head; // 1) 성립X 2) temp에 기존의 head 값 공유 / 3) temp에 기존의 head값 공유
 			System.out.println("head : " + head);                         //확인
+			System.out.println("head 값: " + head.getData());
+				if(head.link != null) {
+					System.out.println("/" + head.link.getData());
+						if(head.link.link != null) {
+							System.out.println("/" + head.link.link.getData());
+						}
+						else if(head.link.link == null) {
+							System.out.println("/ null");
+						}
+				}
 			System.out.println("temp : " + temp);                         //확인
 			System.out.println("temp.link : " + temp.link);               //확인
 			
-			while(temp.link != null) {
+			while(temp.link != null) { // temp.link 가 null이 아닐때 성립 2) 성립X // 3)data = 일 경우에만, 성립O 
 				System.out.println("temp : " + temp);                     //확인
+				System.out.println("head: " + head);                      //확인 (head = temp)
 				System.out.println("temp.link : " + temp.link);           //확인
-				temp = temp.link; // temp.link 가 null이 아닐때 성립 2) 성립X // 3) 성립O 
+				
+				temp = temp.link;                                         //temp = temp.link 공유 -> head 공유 X
+				
 				System.out.println("temp : " + temp);                     //확인
+				System.out.println("*head: " + head);                     //확인
 				System.out.println("temp.link : " + temp.link);           //확인
+				System.out.println("*head.link : " + head.link);          //확인
 			}
+			
 			temp.link = newNode; // temp.link 에 newNode(data = 수 / link = null) 값 대입
 			System.out.println("temp.link : " + temp.link);               //확인
 			System.out.println("head : " + head);                         //확인
 			System.out.println("temp : " + temp);                         //확인
+			
+			
+			System.out.println("# head 값: " + "#" + head.getData());
+				if(head.link != null) {
+					System.out.println("#" + head.link.getData());
+						if(head.link.link != null) {
+							System.out.println("#" + head.link.link.getData());
+						}
+						else if(head.link.link == null) {
+							System.out.println("# null");
+						}
+				}
+//			ListNode abc = head.link;                                     //확인
+//			ListNode abc2 = head.link.link;                               //확인
+//			System.out.println("abc: " +abc);                             //확인
+//			System.out.println("abc.getData(): " + abc.getData());        //확인
+//			System.out.println("abc2: " +abc2);                           //확인
 			System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + temp.link.getData());        //확인
-			System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()); //->  nullpointer 에러?
+			// System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()); //->  nullpointer 에러?
+			
 		}
 	}
 	
@@ -80,8 +114,8 @@ class LinkedList{
 	
 	public ListNode searchNode(String data){ // 문자열 입력받기 1) 수
 		ListNode temp = this.head; 
-		System.out.println("head : " + head);                             //확인
-		System.out.println("head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData());  //확인
+		System.out.println("(2) head : " + head);                             //확인
+		System.out.println("(2) head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData());  //확인
 		while(temp != null){ // 성립O
 			if(data == temp.getData()) // 1) temp.getData = 월 -> (월 != 수) 성립 X -> else 이동 
 				return temp;           //  2)temp.getData = 수 -> 수 == 수 성립 O -> temp 값 (data = 수..) 반환
@@ -95,12 +129,18 @@ class LinkedList{
 	
 	
 	public void reverseList(){
+		System.out.println("(3) head : " + head);                             //확인
+		System.out.println("(3) head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()  + "/" + head.link.link.link.getData());  //확인
 		ListNode next = head;
 		ListNode current = null;
 		ListNode pre = null;
 		while(next != null){
-			pre = current;
-			current = next;
+			pre = current; // pre=null , current=null ->  주소 공유
+			current = next; // current에 next 주소 공유
+			System.out.println("(3) pre : " + pre);
+			System.out.println("(3) current : " + current);
+			// System.out.println("(3) current 값: " + current.getData() + "/" + current.link.getData() + "/" + current.link.link.getData() + "/" + current.link.link.link.getData());
+			System.out.println("(3) next : " + next); 
 			next = next.link;
 			current.link = pre;
 		}
@@ -153,14 +193,15 @@ public class List01{
 		
 LinkedList L = new LinkedList(); // LinkedList 클래스 변수 생성 후 객체 대입.
 		
-		System.out.println("(1) 공백 리스트에 노드 3개 삽입하기");
+		System.out.println("(1) 공백 리스트에 노드 3개 삽입하기"); //* 분석: 2021/05/13 ~ 2021/05/19 23:46
 		L.insertLastNode("월");
 		L.insertLastNode("수");
 		L.insertLastNode("일");
 		L.printList();
 
-		System.out.println("(2) 수 노드 뒤에 금 노드 삽입하기");
+		System.out.println("(2) 수 노드 뒤에 금 노드 삽입하기"); //* 분석: 2021/05/25 ~ 2021/05/26 18:07
 		ListNode pre = L.searchNode("수");
+		System.out.println("pre : " + pre);
 		if(pre == null) // null이 아니기 때문에 성립X
 			System.out.println("검색실패>> 찾는 데이터가 없습니다.");
 		else{ // 성립O
@@ -168,7 +209,7 @@ LinkedList L = new LinkedList(); // LinkedList 클래스 변수 생성 후 객�
 			L.printList();
 		}
 
-		System.out.println("(3) 리스트의 노드를 역순으로 바꾸기");
+		System.out.println("(3) 리스트의 노드를 역순으로 바꾸기"); //* 분석: 2021/05/26 18:10 ~
 		L.reverseList();
 		L.printList();
 
