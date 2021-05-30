@@ -137,10 +137,10 @@ class LinkedList{
 		while(next != null){
 			pre = current; // pre=null , current=null ->  주소 공유
 			current = next; // current에 next 주소 공유
-			System.out.println("(3) pre : " + pre);
-			System.out.println("(3) current : " + current);
+			System.out.println("(3) pre : " + pre);                            //확인
+			System.out.println("(3) current : " + current);                    //확인
 			// System.out.println("(3) current 값: " + current.getData() + "/" + current.link.getData() + "/" + current.link.link.getData() + "/" + current.link.link.link.getData());
-			System.out.println("(3) next : " + next); 
+			System.out.println("(3) next : " + next);                          //확인
 			next = next.link;
 			current.link = pre;
 		}
