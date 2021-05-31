@@ -100,14 +100,21 @@ class LinkedList{
 		if(head.link == null){
 			head = null;
 		}
-		else{
-			pre = head;
-			temp = head.link;
+		else{                          // head, head.link = null이 아닐떄
+			pre = head;                // pre에 head 주소 공유
+			temp = head.link;          // temp에 head.link 주소 공유
 			while(temp.link != null){
 				pre = temp;
 				temp = temp.link;
+				System.out.println("(4) pre: " + pre);
+				System.out.println("(4) temp: " + temp);
+				System.out.println("(4) temp.link: " + temp.link);
+				System.out.println("------------------------------------------");
 			}
 			pre.link = null;
+			System.out.println("(4) pre: " + pre);
+			System.out.println("(4) pre 값: " + pre.getData());
+			System.out.println("------------------------------------------");
 		}
 	}
 	
@@ -131,6 +138,7 @@ class LinkedList{
 	public void reverseList(){
 		System.out.println("(3) head : " + head);                             //확인
 		System.out.println("(3) head값 : " + head.getData() + "/" + head.link.getData() + "/" + head.link.link.getData()  + "/" + head.link.link.link.getData());  //확인
+		System.out.println("==========================================");
 		ListNode next = head;
 		ListNode current = null;
 		ListNode pre = null;
@@ -143,13 +151,15 @@ class LinkedList{
 			System.out.println("(3) next : " + next);                          //확인
 			next = next.link;
 			current.link = pre;
+			System.out.println("------------------------------------------");
 		}
 		head = current;
+		System.out.println("pre");
 	}
 	
 	
 	public void printList(){
-		ListNode temp = this.head; //  
+		ListNode temp = this.head; 
 		System.out.printf("L = (");
 		while(temp != null){
 			System.out.printf(temp.getData());
@@ -209,11 +219,11 @@ LinkedList L = new LinkedList(); // LinkedList 클래스 변수 생성 후 객�
 			L.printList();
 		}
 
-		System.out.println("(3) 리스트의 노드를 역순으로 바꾸기"); //* 분석: 2021/05/26 18:10 ~
+		System.out.println("(3) 리스트의 노드를 역순으로 바꾸기"); //* 분석: 2021/05/26 18:10 ~ 2021/05/26 19:10
 		L.reverseList();
 		L.printList();
 
-		System.out.println("(4) 리스트의 마지막 노드 삭제하기");      
+		System.out.println("(4) 리스트의 마지막 노드 삭제하기"); //* 분석: 2021/05/31 18:05 ~ 
 		L.deleteLastNode();
 		L.printList();
 		
