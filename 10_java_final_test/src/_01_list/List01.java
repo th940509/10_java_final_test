@@ -223,7 +223,7 @@ LinkedList L = new LinkedList(); // LinkedList 클래스 변수 생성 후 객�
 		L.reverseList();
 		L.printList();
 
-		System.out.println("(4) 리스트의 마지막 노드 삭제하기"); //* 분석: 2021/05/31 18:05 ~ 
+		System.out.println("(4) 리스트의 마지막 노드 삭제하기"); //* 분석: 2021/05/31 18:05 ~ 19:30
 		L.deleteLastNode();
 		L.printList();
 		
