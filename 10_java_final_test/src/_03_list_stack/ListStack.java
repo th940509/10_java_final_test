@@ -92,8 +92,8 @@ class LinkedStack implements Stack{ // implements 키워드를 사용하여 인�
 			while(temp != null){                           // 1)2) temp와 top의 주소 공유 -> temp != null 성립하여 while문 성립함.
 				System.out.printf("\t %c \n", temp.data);  // 1) temp.data = top.data = 'A' // 2) temp.data = top.data = 'B'
 				temp = temp.link;                          //    temp에 temp.link 공유 -> temp = null;
-				System.out.println("[주소 확인용]top : " + top);  //확인용
-				System.out.println("[주소 확인용]temp : " + temp);//확인용
+				System.out.println("[*주소 확인용]temp : " + temp);//확인용
+				System.out.println("[*주소 확인용]top : " + top);  //확인용
 			}
 			System.out.println();	
 		}
