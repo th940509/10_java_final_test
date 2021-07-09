@@ -126,7 +126,7 @@ public class ListStack{
 		
 		System.out.println("----------------------------------------------------");
 		
-		//2021/06/23 12:01 ~ 12:22s
+		//2021/06/23 12:01 ~ 12:22
 		deletedItem = LS.pop(); 
 		if(deletedItem != 0)
 			System.out.println("deleted Item : " + deletedItem); // C
